@@ -310,7 +310,7 @@ const routines = [
 
   /* =========================================
      SHOWER
-  ========================================= */
+     ========================================= */
 
   {
     id: "refreshing-shower",
@@ -334,8 +334,7 @@ const routines = [
         title: "Shower",
         description: "Take your shower and get comfortable.",
         icon: "🚿",
-        type: "timer",
-        seconds: 120
+        type: "done"
       },
 
       {
@@ -429,8 +428,7 @@ const routines = [
         title: "Cleanse",
         description: "Use your usual cleanser and rinse comfortably.",
         icon: "🫧",
-        type: "timer",
-        seconds: 30
+        type: "done"
       },
 
       {
@@ -475,10 +473,9 @@ const routines = [
 
       {
         title: "Brush Your Teeth",
-        description: "Brush your teeth for two minutes.",
+        description: "Brush your teeth.",
         icon: "🪥",
-        type: "timer",
-        seconds: 120
+        type: "done"
       },
 
       {
@@ -523,10 +520,9 @@ const routines = [
 
       {
         title: "Brush Your Teeth",
-        description: "Brush your teeth for two minutes.",
+        description: "Brush your teeth.",
         icon: "🪥",
-        type: "timer",
-        seconds: 120
+        type: "done"
       },
 
       {
@@ -547,8 +543,7 @@ const routines = [
         title: "Wind Down",
         description: "Take a moment to settle down.",
         icon: "🌙",
-        type: "timer",
-        seconds: 60
+        type: "done"
       }
 
     ]
@@ -795,13 +790,26 @@ function showCurrentStep() {
     document.getElementById("timerControls");
 
 
+  /*
+    Always hide every special control first.
+    This prevents controls from carrying over
+    from the previous step.
+  */
+
   timerArea.hidden = true;
   repsArea.hidden = true;
   doneButton.hidden = true;
   timerControls.hidden = true;
 
 
-  if (step.type === "timer") {
+  /*
+    MOVEMENT TIMER
+  */
+
+  if (
+    currentRoutine.workout &&
+    step.type === "timer"
+  ) {
 
     timerArea.hidden = false;
     timerControls.hidden = false;
@@ -816,7 +824,14 @@ function showCurrentStep() {
   }
 
 
-  else if (step.type === "reps") {
+  /*
+    MOVEMENT REPS
+  */
+
+  else if (
+    currentRoutine.workout &&
+    step.type === "reps"
+  ) {
 
     repsArea.hidden = false;
     doneButton.hidden = false;
@@ -833,6 +848,10 @@ function showCurrentStep() {
 
   }
 
+
+  /*
+    SELF-CARE / DONE STEP
+  */
 
   else {
 
@@ -918,6 +937,14 @@ function updateTimerDisplay() {
 
 function togglePause() {
 
+  if (
+    !currentRoutine ||
+    !currentRoutine.workout
+  ) {
+    return;
+  }
+
+
   isPaused =
     !isPaused;
 
@@ -926,10 +953,14 @@ function togglePause() {
     document.getElementById("pauseButton");
 
 
-  button.textContent =
-    isPaused
-      ? "Resume"
-      : "Pause";
+  if (button) {
+
+    button.textContent =
+      isPaused
+        ? "Resume"
+        : "Pause";
+
+  }
 
 }
 
@@ -940,6 +971,14 @@ function togglePause() {
 ========================================= */
 
 function skipStep() {
+
+  if (
+    !currentRoutine ||
+    !currentRoutine.workout
+  ) {
+    return;
+  }
+
 
   finishStep();
 
@@ -970,6 +1009,12 @@ function finishStep() {
   completedStepCount++;
 
 
+  /*
+    Only workout routines get rest breaks.
+    Self-care routines immediately move
+    to the next checklist item.
+  */
+
   if (
     currentRoutine &&
     currentRoutine.workout
@@ -997,6 +1042,12 @@ function startBreak() {
   breakSeconds = 30;
 
   updateBreakDisplay();
+
+
+  if (!breakOverlay) {
+    nextStep();
+    return;
+  }
 
 
   breakOverlay.hidden = false;
@@ -1099,6 +1150,7 @@ function nextStep() {
 
 
   if (
+    !currentRoutine ||
     currentStepIndex >=
     currentRoutine.steps.length
   ) {
@@ -1130,7 +1182,9 @@ function completeRoutine() {
   }
 
 
-  playerOverlay.hidden = true;
+  if (playerOverlay) {
+    playerOverlay.hidden = true;
+  }
 
 
   const elapsed =
@@ -1149,25 +1203,51 @@ function completeRoutine() {
     elapsed % 60;
 
 
-  document.getElementById(
-    "completedSteps"
-  ).textContent =
-    completedStepCount;
+  const completedSteps =
+    document.getElementById(
+      "completedSteps"
+    );
+
+  if (completedSteps) {
+
+    completedSteps.textContent =
+      completedStepCount;
+
+  }
 
 
-  document.getElementById(
-    "completedTime"
-  ).textContent =
-    `${minutes}:${String(seconds).padStart(2, "0")}`;
+  const completedTime =
+    document.getElementById(
+      "completedTime"
+    );
+
+  if (completedTime) {
+
+    completedTime.textContent =
+      `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+  }
 
 
-  document.getElementById(
-    "completionMessage"
-  ).textContent =
-    `You made some time for yourself with ${currentRoutine.title}.`;
+  const completionMessage =
+    document.getElementById(
+      "completionMessage"
+    );
+
+  if (completionMessage) {
+
+    completionMessage.textContent =
+      `You made some time for yourself with ${currentRoutine.title}.`;
+
+  }
 
 
-  completionOverlay.hidden = false;
+  if (completionOverlay) {
+    completionOverlay.hidden = false;
+  }
+
+
+  document.body.classList.remove("player-open");
 
 }
 
@@ -1181,8 +1261,21 @@ function closePlayer() {
 
   clearTimers();
 
-  playerOverlay.hidden = true;
-  breakOverlay.hidden = true;
+
+  if (playerOverlay) {
+    playerOverlay.hidden = true;
+  }
+
+
+  if (breakOverlay) {
+    breakOverlay.hidden = true;
+  }
+
+
+  if (completionOverlay) {
+    completionOverlay.hidden = true;
+  }
+
 
   document.body.classList.remove("player-open");
 
@@ -1201,14 +1294,25 @@ function restartRoutine() {
   }
 
 
-  completionOverlay.hidden = true;
+  clearTimers();
+
+
+  if (completionOverlay) {
+    completionOverlay.hidden = true;
+  }
+
 
   currentStepIndex = 0;
   completedStepCount = 0;
 
   routineStartedAt = Date.now();
 
-  playerOverlay.hidden = false;
+  if (playerOverlay) {
+    playerOverlay.hidden = false;
+  }
+
+
+  document.body.classList.add("player-open");
 
   showCurrentStep();
 
@@ -1367,6 +1471,10 @@ document.addEventListener(
     handleURL();
 
 
+    /* =====================================
+       PAUSE
+    ===================================== */
+
     const pauseButton =
       document.getElementById(
         "pauseButton"
@@ -1381,6 +1489,10 @@ document.addEventListener(
 
     }
 
+
+    /* =====================================
+       SKIP
+    ===================================== */
 
     const skipButton =
       document.getElementById(
@@ -1397,6 +1509,10 @@ document.addEventListener(
     }
 
 
+    /* =====================================
+       DONE
+    ===================================== */
+
     const doneButton =
       document.getElementById(
         "playerDone"
@@ -1411,6 +1527,10 @@ document.addEventListener(
 
     }
 
+
+    /* =====================================
+       CLOSE
+    ===================================== */
 
     const closeButton =
       document.getElementById(
@@ -1427,6 +1547,10 @@ document.addEventListener(
     }
 
 
+    /* =====================================
+       SKIP BREAK
+    ===================================== */
+
     const skipBreakButton =
       document.getElementById(
         "skipBreak"
@@ -1441,6 +1565,10 @@ document.addEventListener(
 
     }
 
+
+    /* =====================================
+       MORE BREAK TIME
+    ===================================== */
 
     const moreBreakButton =
       document.getElementById(
@@ -1457,6 +1585,10 @@ document.addEventListener(
     }
 
 
+    /* =====================================
+       RESTART
+    ===================================== */
+
     const restartButton =
       document.getElementById(
         "restartRoutine"
@@ -1471,6 +1603,10 @@ document.addEventListener(
 
     }
 
+
+    /* =====================================
+       ESCAPE KEY
+    ===================================== */
 
     document.addEventListener(
       "keydown",
