@@ -1,493 +1,1490 @@
-"use strict";
-
-
-/* =========================
+/* =========================================
    MALLOW MOVEMENT
-   ROUTINE DATA
-========================= */
+   ROUTINE SYSTEM
+========================================= */
 
-const routines = {
 
-  beginner: {
+const routines = [
+
+  /* =========================================
+     MOVEMENT
+  ========================================= */
+
+  {
+    id: "getting-started",
+    category: "movement",
+    categoryName: "Movement",
     icon: "🌱",
-    label: "EASY START",
     title: "Getting Started",
-    description:
-      "A simple routine for easing into movement and getting comfortable.",
-    exercises: [
+    description: "A gentle way to get moving.",
+    workout: true,
+
+    steps: [
+
       {
-        name: "Easy March",
-        detail: "March gently in place and let your arms move naturally."
+        title: "Easy March",
+        description: "March gently in place.",
+        icon: "🚶",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Shoulder Rolls",
-        detail: "Slowly roll your shoulders forward and backward."
+        title: "Shoulder Rolls",
+        description: "Roll your shoulders slowly and comfortably.",
+        icon: "🌸",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Side Steps",
-        detail: "Take comfortable steps from side to side."
+        title: "Side Steps",
+        description: "Step gently from side to side.",
+        icon: "👟",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Gentle Reach",
-        detail: "Reach your arms overhead, then bring them back down."
+        title: "Gentle Reach",
+        description: "Reach upward and return to a comfortable position.",
+        icon: "🙌",
+        type: "reps",
+        sets: 1,
+        reps: 8
       },
+
       {
-        name: "Easy Walk",
-        detail: "Walk around at a comfortable pace and let yourself settle."
+        title: "Easy Walk",
+        description: "Take a comfortable walk around your space.",
+        icon: "🌿",
+        type: "timer",
+        seconds: 60
       }
+
     ]
   },
 
 
-  strength: {
+  /* =========================================
+     STRENGTH
+  ========================================= */
+
+  {
+    id: "build-strength",
+    category: "movement",
+    categoryName: "Movement",
     icon: "💪",
-    label: "STRENGTH",
     title: "Build Strength",
-    description:
-      "Simple strength-focused movements using your body and comfortable range of motion.",
-    exercises: [
+    description: "Simple strength-focused movements.",
+    workout: true,
+
+    steps: [
+
       {
-        name: "Chair Squat",
-        detail: "Sit toward a sturdy chair and stand back up comfortably."
+        title: "Chair Squats",
+        description: "Use a chair for support if you want.",
+        icon: "🪑",
+        type: "reps",
+        sets: 2,
+        reps: 8
       },
+
       {
-        name: "Wall Push",
-        detail: "Place your hands against a wall and gently push away."
+        title: "Wall Push",
+        description: "Use a wall for a gentle upper-body movement.",
+        icon: "🧱",
+        type: "reps",
+        sets: 2,
+        reps: 8
       },
+
       {
-        name: "Glute Bridge",
-        detail: "From a comfortable lying position, lift your hips gently."
+        title: "Glute Bridge",
+        description: "Move slowly and comfortably.",
+        icon: "🌱",
+        type: "reps",
+        sets: 2,
+        reps: 8
       },
+
       {
-        name: "Bird Dog",
-        detail: "From hands and knees, slowly extend opposite arm and leg."
+        title: "Bird Dog",
+        description: "Move with control and keep the motion comfortable.",
+        icon: "🐦",
+        type: "reps",
+        sets: 2,
+        reps: 6
       },
+
       {
-        name: "Standing Calf Raise",
-        detail: "Hold a stable surface if needed and gently rise onto your toes."
+        title: "Standing Calf Raise",
+        description: "Hold onto something stable if needed.",
+        icon: "👟",
+        type: "reps",
+        sets: 2,
+        reps: 10
       }
+
     ]
   },
 
 
-  stretch: {
+  /* =========================================
+     STRETCH
+  ========================================= */
+
+  {
+    id: "stretch-mobility",
+    category: "movement",
+    categoryName: "Movement",
     icon: "🧘",
-    label: "MOBILITY",
     title: "Stretch & Mobility",
-    description:
-      "Gentle movements to explore flexibility and comfortable mobility.",
-    exercises: [
+    description: "Gentle stretches and mobility movements.",
+    workout: true,
+
+    steps: [
+
       {
-        name: "Neck Turns",
-        detail: "Slowly look from side to side without forcing the movement."
+        title: "Neck Turns",
+        description: "Slowly look from one side to the other.",
+        icon: "🌿",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Shoulder Stretch",
-        detail: "Bring one arm across your body and hold gently."
+        title: "Shoulder Stretch",
+        description: "Hold a comfortable shoulder stretch.",
+        icon: "🌸",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Side Reach",
-        detail: "Reach one arm overhead and lean slightly to the opposite side."
+        title: "Side Reach",
+        description: "Reach gently to each side.",
+        icon: "🙌",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Seated Twist",
-        detail: "Sit comfortably and gently rotate your upper body."
+        title: "Seated Twist",
+        description: "Move only as far as feels comfortable.",
+        icon: "🪷",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Ankle Circles",
-        detail: "Lift one foot slightly and make slow circles with your ankle."
+        title: "Ankle Circles",
+        description: "Slowly circle your ankles.",
+        icon: "🦶",
+        type: "timer",
+        seconds: 30
       }
+
     ]
   },
 
 
-  energy: {
+  /* =========================================
+     ENERGY
+  ========================================= */
+
+  {
+    id: "get-moving",
+    category: "movement",
+    categoryName: "Movement",
     icon: "⚡",
-    label: "ENERGY",
     title: "Get Moving",
-    description:
-      "A light routine for when you want to wake up your body and get moving.",
-    exercises: [
+    description: "A short routine for some extra energy.",
+    workout: true,
+
+    steps: [
+
       {
-        name: "March in Place",
-        detail: "March comfortably while letting your arms move naturally."
+        title: "March in Place",
+        description: "Find a comfortable rhythm.",
+        icon: "🚶",
+        type: "timer",
+        seconds: 45
       },
+
       {
-        name: "Arm Swings",
-        detail: "Swing your arms gently from side to side."
+        title: "Arm Swings",
+        description: "Swing your arms comfortably.",
+        icon: "🙌",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Step Touch",
-        detail: "Step from side to side at a comfortable rhythm."
+        title: "Step Touch",
+        description: "Step side to side at your own pace.",
+        icon: "👟",
+        type: "timer",
+        seconds: 45
       },
+
       {
-        name: "Reach & Pull",
-        detail: "Reach upward, then gently pull your elbows back."
+        title: "Reach & Pull",
+        description: "Reach upward, then gently pull your arms back.",
+        icon: "✨",
+        type: "reps",
+        sets: 1,
+        reps: 10
       },
+
       {
-        name: "Free Movement",
-        detail: "Move however feels comfortable for a moment."
+        title: "Free Movement",
+        description: "Move however feels comfortable.",
+        icon: "🌈",
+        type: "timer",
+        seconds: 60
       }
+
     ]
   },
 
 
-  relax: {
+  /* =========================================
+     WIND DOWN
+  ========================================= */
+
+  {
+    id: "slow-down",
+    category: "relax",
+    categoryName: "Wind Down",
     icon: "🌙",
-    label: "WIND DOWN",
     title: "Slow Down",
-    description:
-      "Calm, gentle movement for relaxing and reconnecting with yourself.",
-    exercises: [
+    description: "Calm movement for winding down.",
+    workout: true,
+
+    steps: [
+
       {
-        name: "Slow Breathing",
-        detail: "Take a few comfortable, unhurried breaths."
+        title: "Slow Breathing",
+        description: "Take slow, comfortable breaths.",
+        icon: "🌬️",
+        type: "timer",
+        seconds: 60
       },
+
       {
-        name: "Shoulder Rolls",
-        detail: "Slowly roll your shoulders and let them relax."
+        title: "Shoulder Rolls",
+        description: "Relax your shoulders as you move.",
+        icon: "🌸",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Gentle Side Reach",
-        detail: "Reach softly from one side to the other."
+        title: "Gentle Side Reach",
+        description: "Reach gently from side to side.",
+        icon: "🌿",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Easy Forward Fold",
-        detail: "Fold forward only as far as feels comfortable."
+        title: "Easy Forward Fold",
+        description: "Only move as far as feels comfortable.",
+        icon: "🧘",
+        type: "timer",
+        seconds: 30
       },
+
       {
-        name: "Quiet Walk",
-        detail: "Take a slow walk and let your movement settle."
+        title: "Quiet Walk",
+        description: "Take a calm walk and let yourself slow down.",
+        icon: "🌙",
+        type: "timer",
+        seconds: 60
       }
+
+    ]
+  },
+
+
+  /* =========================================
+     SHOWER
+  ========================================= */
+
+  {
+    id: "refreshing-shower",
+    category: "shower",
+    categoryName: "Shower",
+    icon: "🚿",
+    title: "Refreshing Shower",
+    description: "A simple shower routine.",
+    workout: false,
+
+    steps: [
+
+      {
+        title: "Get Ready",
+        description: "Gather anything you want before starting.",
+        icon: "🫧",
+        type: "done"
+      },
+
+      {
+        title: "Shower",
+        description: "Take your shower and get comfortable.",
+        icon: "🚿",
+        type: "timer",
+        seconds: 120
+      },
+
+      {
+        title: "Wash",
+        description: "Use your usual shower products.",
+        icon: "🧴",
+        type: "done"
+      },
+
+      {
+        title: "Rinse",
+        description: "Rinse off when you're ready.",
+        icon: "💧",
+        type: "done"
+      },
+
+      {
+        title: "Dry Off",
+        description: "Dry off and get comfortable.",
+        icon: "🧺",
+        type: "done"
+      }
+
+    ]
+  },
+
+
+  /* =========================================
+     HAIR
+  ========================================= */
+
+  {
+    id: "hair-care",
+    category: "hair",
+    categoryName: "Hair",
+    icon: "🪮",
+    title: "Hair Care",
+    description: "A simple routine for taking care of your hair.",
+    workout: false,
+
+    steps: [
+
+      {
+        title: "Get Ready",
+        description: "Grab your brush or comb and anything else you use.",
+        icon: "🪮",
+        type: "done"
+      },
+
+      {
+        title: "Brush or Comb",
+        description: "Gently work through your hair.",
+        icon: "✨",
+        type: "done"
+      },
+
+      {
+        title: "Style",
+        description: "Arrange your hair however you like.",
+        icon: "🌷",
+        type: "done"
+      },
+
+      {
+        title: "Final Check",
+        description: "Make any little adjustments you want.",
+        icon: "🪞",
+        type: "done"
+      }
+
+    ]
+  },
+
+
+  /* =========================================
+     FACE
+  ========================================= */
+
+  {
+    id: "face-care",
+    category: "face",
+    categoryName: "Face",
+    icon: "✨",
+    title: "Face Care",
+    description: "A simple everyday face-care routine.",
+    workout: false,
+
+    steps: [
+
+      {
+        title: "Cleanse",
+        description: "Use your usual cleanser and rinse comfortably.",
+        icon: "🫧",
+        type: "timer",
+        seconds: 30
+      },
+
+      {
+        title: "Rinse",
+        description: "Rinse your face with water.",
+        icon: "💧",
+        type: "done"
+      },
+
+      {
+        title: "Dry",
+        description: "Gently dry your face.",
+        icon: "🌸",
+        type: "done"
+      },
+
+      {
+        title: "Moisturize",
+        description: "Apply your usual moisturizer if you use one.",
+        icon: "🧴",
+        type: "done"
+      }
+
+    ]
+  },
+
+
+  /* =========================================
+     PERSONAL CARE
+  ========================================= */
+
+  {
+    id: "morning-care",
+    category: "selfcare",
+    categoryName: "Self-Care",
+    icon: "🫧",
+    title: "Morning Care",
+    description: "A simple routine for getting ready.",
+    workout: false,
+
+    steps: [
+
+      {
+        title: "Brush Your Teeth",
+        description: "Brush your teeth for two minutes.",
+        icon: "🪥",
+        type: "timer",
+        seconds: 120
+      },
+
+      {
+        title: "Wash Your Face",
+        description: "Use your normal face-washing routine.",
+        icon: "🫧",
+        type: "done"
+      },
+
+      {
+        title: "Hair",
+        description: "Brush, comb, or style your hair.",
+        icon: "🪮",
+        type: "done"
+      },
+
+      {
+        title: "Get Dressed",
+        description: "Choose something comfortable that feels like you.",
+        icon: "👕",
+        type: "done"
+      }
+
+    ]
+  },
+
+
+  /* =========================================
+     NIGHT ROUTINE
+  ========================================= */
+
+  {
+    id: "night-care",
+    category: "selfcare",
+    categoryName: "Self-Care",
+    icon: "🌙",
+    title: "Night Care",
+    description: "A calm routine for getting ready for bed.",
+    workout: false,
+
+    steps: [
+
+      {
+        title: "Brush Your Teeth",
+        description: "Brush your teeth for two minutes.",
+        icon: "🪥",
+        type: "timer",
+        seconds: 120
+      },
+
+      {
+        title: "Face Care",
+        description: "Complete your usual face-care routine.",
+        icon: "✨",
+        type: "done"
+      },
+
+      {
+        title: "Hair Check",
+        description: "Get your hair comfortable for the night.",
+        icon: "🪮",
+        type: "done"
+      },
+
+      {
+        title: "Wind Down",
+        description: "Take a moment to settle down.",
+        icon: "🌙",
+        type: "timer",
+        seconds: 60
+      }
+
     ]
   }
 
-};
+];
 
 
-/* =========================
-   ELEMENTS
-========================= */
 
-const routineModal =
-  document.getElementById("routineModal");
+/* =========================================
+   PLAYER STATE
+========================================= */
 
-const modalIcon =
-  document.getElementById("modalIcon");
+let currentRoutine = null;
+let currentStepIndex = 0;
 
-const modalLabel =
-  document.getElementById("modalLabel");
+let timerInterval = null;
+let breakInterval = null;
 
-const modalTitle =
-  document.getElementById("modalTitle");
+let remainingSeconds = 0;
+let breakSeconds = 30;
 
-const modalDescription =
-  document.getElementById("modalDescription");
+let isPaused = false;
 
-const routineList =
-  document.getElementById("routineList");
-
-const closeModal =
-  document.getElementById("closeModal");
-
-const surpriseCard =
-  document.getElementById("surpriseCard");
-
-const toast =
-  document.getElementById("toast");
+let routineStartedAt = null;
+let completedStepCount = 0;
 
 
-/* =========================
-   OPEN ROUTINE
-========================= */
 
-function openRoutine(routineName) {
+/* =========================================
+   DOM
+========================================= */
 
-  const routine = routines[routineName];
+const routineGrid =
+  document.getElementById("routineGrid");
+
+const playerOverlay =
+  document.getElementById("playerOverlay");
+
+const breakOverlay =
+  document.getElementById("breakOverlay");
+
+const completionOverlay =
+  document.getElementById("completionOverlay");
+
+
+
+/* =========================================
+   ROUTINE CARDS
+========================================= */
+
+function createRoutineCards(filter = "all") {
+
+  if (!routineGrid) {
+    return;
+  }
+
+  routineGrid.innerHTML = "";
+
+  const filtered =
+    filter === "all"
+      ? routines
+      : routines.filter(
+          routine => routine.category === filter
+        );
+
+
+  filtered.forEach(routine => {
+
+    const card =
+      document.createElement("button");
+
+    card.className =
+      `library-card ${routine.category}`;
+
+    card.innerHTML = `
+
+      <div class="library-card-icon">
+        ${routine.icon}
+      </div>
+
+      <span class="routine-label">
+        ${routine.categoryName}
+      </span>
+
+      <h3>
+        ${routine.title}
+      </h3>
+
+      <p>
+        ${routine.description}
+      </p>
+
+      <div class="library-card-footer">
+
+        <span>
+          ${routine.steps.length} steps
+        </span>
+
+        <span>
+          ${routine.workout ? "♡ Workout" : "♡ Self-care"}
+        </span>
+
+      </div>
+
+      <span class="library-card-arrow">
+        →
+      </span>
+
+    `;
+
+
+    card.addEventListener(
+      "click",
+      () => startRoutine(routine.id)
+    );
+
+
+    routineGrid.appendChild(card);
+
+  });
+
+}
+
+
+
+/* =========================================
+   START ROUTINE
+========================================= */
+
+function startRoutine(routineId) {
+
+  const routine =
+    routines.find(
+      item => item.id === routineId
+    );
 
   if (!routine) {
     return;
   }
 
 
-  modalIcon.textContent =
-    routine.icon;
+  currentRoutine = routine;
+  currentStepIndex = 0;
+  completedStepCount = 0;
 
-  modalLabel.textContent =
-    routine.label;
+  routineStartedAt = Date.now();
 
-  modalTitle.textContent =
-    routine.title;
 
-  modalDescription.textContent =
-    routine.description;
-
-
-  routineList.innerHTML = "";
-
-
-  routine.exercises.forEach(
-    (exercise, index) => {
-
-      const item =
-        document.createElement("div");
-
-      item.className =
-        "routine-item";
-
-
-      item.innerHTML = `
-        <div class="routine-item-number">
-          ${index + 1}
-        </div>
-
-        <div class="routine-item-content">
-
-          <strong>
-            ${exercise.name}
-          </strong>
-
-          <span>
-            ${exercise.detail}
-          </span>
-
-        </div>
-      `;
-
-
-      routineList.appendChild(item);
-
-    }
-  );
-
-
-  routineModal.hidden = false;
-
-  document.body.style.overflow =
-    "hidden";
-
-}
-
-
-/* =========================
-   CLOSE ROUTINE
-========================= */
-
-function closeRoutine() {
-
-  routineModal.hidden = true;
-
-  document.body.style.overflow =
-    "";
-
-}
-
-
-/* =========================
-   RANDOM ROUTINE
-========================= */
-
-function surpriseMe() {
-
-  const routineNames =
-    Object.keys(routines);
-
-  const randomIndex =
-    Math.floor(
-      Math.random() *
-      routineNames.length
-    );
-
-  const randomRoutine =
-    routineNames[randomIndex];
-
-
-  openRoutine(randomRoutine);
-
-}
-
-
-/* =========================
-   ROUTINE CARD EVENTS
-========================= */
-
-const routineCards =
-  document.querySelectorAll(
-    ".routine-card[data-routine]"
-  );
-
-
-routineCards.forEach(
-  card => {
-
-    card.addEventListener(
-      "click",
-      () => {
-
-        const routine =
-          card.dataset.routine;
-
-        openRoutine(routine);
-
-      }
-    );
-
-  }
-);
-
-
-/* =========================
-   SURPRISE CARD
-========================= */
-
-if (surpriseCard) {
-
-  surpriseCard.addEventListener(
-    "click",
-    surpriseMe
-  );
-
-}
-
-
-/* =========================
-   CLOSE BUTTON
-========================= */
-
-if (closeModal) {
-
-  closeModal.addEventListener(
-    "click",
-    closeRoutine
-  );
-
-}
-
-
-/* =========================
-   CLICK BACKDROP
-========================= */
-
-if (routineModal) {
-
-  const backdrop =
-    routineModal.querySelector(
-      ".modal-backdrop"
-    );
-
-
-  if (backdrop) {
-
-    backdrop.addEventListener(
-      "click",
-      closeRoutine
-    );
-
+  if (completionOverlay) {
+    completionOverlay.hidden = true;
   }
 
+
+  if (breakOverlay) {
+    breakOverlay.hidden = true;
+  }
+
+
+  if (playerOverlay) {
+    playerOverlay.hidden = false;
+  }
+
+
+  document.body.classList.add("player-open");
+
+  showCurrentStep();
+
 }
 
 
-/* =========================
-   ESCAPE KEY
-========================= */
 
-document.addEventListener(
-  "keydown",
-  event => {
+/* =========================================
+   SHOW CURRENT STEP
+========================================= */
 
-    if (
-      event.key === "Escape" &&
-      routineModal &&
-      !routineModal.hidden
-    ) {
+function showCurrentStep() {
 
-      closeRoutine();
+  clearTimers();
 
-    }
-
-  }
-);
+  isPaused = false;
 
 
-/* =========================
-   SCROLL TO ROUTINES
-========================= */
-
-function scrollToRoutines() {
-
-  const routinesSection =
-    document.getElementById(
-      "routines"
-    );
-
-
-  if (!routinesSection) {
+  if (!currentRoutine) {
     return;
   }
 
 
-  routinesSection.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+  const step =
+    currentRoutine.steps[currentStepIndex];
+
+
+  if (!step) {
+    completeRoutine();
+    return;
+  }
+
+
+  const total =
+    currentRoutine.steps.length;
+
+
+  document.getElementById("playerCategory").textContent =
+    currentRoutine.categoryName;
+
+  document.getElementById("playerTitle").textContent =
+    currentRoutine.title;
+
+  document.getElementById("playerIcon").textContent =
+    step.icon;
+
+  document.getElementById("playerStepTitle").textContent =
+    step.title;
+
+  document.getElementById("playerDescription").textContent =
+    step.description;
+
+  document.getElementById("currentStep").textContent =
+    currentStepIndex + 1;
+
+  document.getElementById("totalSteps").textContent =
+    total;
+
+
+  const progress =
+    ((currentStepIndex) / total) * 100;
+
+  document.getElementById(
+    "playerProgressBar"
+  ).style.width =
+    `${progress}%`;
+
+
+  const timerArea =
+    document.getElementById("timerArea");
+
+  const repsArea =
+    document.getElementById("repsArea");
+
+  const doneButton =
+    document.getElementById("playerDone");
+
+  const timerControls =
+    document.getElementById("timerControls");
+
+
+  timerArea.hidden = true;
+  repsArea.hidden = true;
+  doneButton.hidden = true;
+  timerControls.hidden = true;
+
+
+  if (step.type === "timer") {
+
+    timerArea.hidden = false;
+    timerControls.hidden = false;
+
+    remainingSeconds =
+      step.seconds;
+
+    updateTimerDisplay();
+
+    startTimer();
+
+  }
+
+
+  else if (step.type === "reps") {
+
+    repsArea.hidden = false;
+    doneButton.hidden = false;
+
+    document.getElementById(
+      "setsDisplay"
+    ).textContent =
+      step.sets;
+
+    document.getElementById(
+      "repsDisplay"
+    ).textContent =
+      step.reps;
+
+  }
+
+
+  else {
+
+    doneButton.hidden = false;
+
+  }
+
+}
+
+
+
+/* =========================================
+   TIMER
+========================================= */
+
+function startTimer() {
+
+  clearInterval(timerInterval);
+
+
+  timerInterval =
+    setInterval(() => {
+
+      if (isPaused) {
+        return;
+      }
+
+
+      remainingSeconds--;
+
+
+      updateTimerDisplay();
+
+
+      if (remainingSeconds <= 0) {
+
+        clearInterval(timerInterval);
+
+        finishStep();
+
+      }
+
+    }, 1000);
+
+}
+
+
+
+/* =========================================
+   TIMER DISPLAY
+========================================= */
+
+function updateTimerDisplay() {
+
+  const display =
+    document.getElementById("timerDisplay");
+
+
+  if (!display) {
+    return;
+  }
+
+
+  const minutes =
+    Math.floor(
+      remainingSeconds / 60
+    );
+
+  const seconds =
+    remainingSeconds % 60;
+
+
+  display.textContent =
+    `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+}
+
+
+
+/* =========================================
+   PAUSE
+========================================= */
+
+function togglePause() {
+
+  isPaused =
+    !isPaused;
+
+
+  const button =
+    document.getElementById("pauseButton");
+
+
+  button.textContent =
+    isPaused
+      ? "Resume"
+      : "Pause";
+
+}
+
+
+
+/* =========================================
+   SKIP
+========================================= */
+
+function skipStep() {
+
+  finishStep();
+
+}
+
+
+
+/* =========================================
+   DONE
+========================================= */
+
+function completeCurrentStep() {
+
+  finishStep();
+
+}
+
+
+
+/* =========================================
+   FINISH STEP
+========================================= */
+
+function finishStep() {
+
+  clearTimers();
+
+  completedStepCount++;
+
+
+  if (
+    currentRoutine &&
+    currentRoutine.workout
+  ) {
+
+    startBreak();
+
+    return;
+
+  }
+
+
+  nextStep();
+
+}
+
+
+
+/* =========================================
+   BREAK TIMER
+========================================= */
+
+function startBreak() {
+
+  breakSeconds = 30;
+
+  updateBreakDisplay();
+
+
+  breakOverlay.hidden = false;
+
+
+  breakInterval =
+    setInterval(() => {
+
+      breakSeconds--;
+
+      updateBreakDisplay();
+
+
+      if (breakSeconds <= 0) {
+
+        clearInterval(breakInterval);
+
+        breakOverlay.hidden = true;
+
+        nextStep();
+
+      }
+
+    }, 1000);
+
+}
+
+
+
+/* =========================================
+   BREAK DISPLAY
+========================================= */
+
+function updateBreakDisplay() {
+
+  const display =
+    document.getElementById("breakTimer");
+
+
+  if (!display) {
+    return;
+  }
+
+
+  const minutes =
+    Math.floor(
+      breakSeconds / 60
+    );
+
+  const seconds =
+    breakSeconds % 60;
+
+
+  display.textContent =
+    `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+}
+
+
+
+/* =========================================
+   SKIP BREAK
+========================================= */
+
+function skipBreak() {
+
+  clearInterval(breakInterval);
+
+  breakOverlay.hidden = true;
+
+  nextStep();
+
+}
+
+
+
+/* =========================================
+   ADD BREAK TIME
+========================================= */
+
+function addBreakTime() {
+
+  breakSeconds += 15;
+
+  updateBreakDisplay();
+
+}
+
+
+
+/* =========================================
+   NEXT STEP
+========================================= */
+
+function nextStep() {
+
+  clearTimers();
+
+  currentStepIndex++;
+
+
+  if (
+    currentStepIndex >=
+    currentRoutine.steps.length
+  ) {
+
+    completeRoutine();
+
+    return;
+
+  }
+
+
+  showCurrentStep();
+
+}
+
+
+
+/* =========================================
+   COMPLETE ROUTINE
+========================================= */
+
+function completeRoutine() {
+
+  clearTimers();
+
+
+  if (!currentRoutine) {
+    return;
+  }
+
+
+  playerOverlay.hidden = true;
+
+
+  const elapsed =
+    Math.max(
+      0,
+      Math.floor(
+        (Date.now() - routineStartedAt) / 1000
+      )
+    );
+
+
+  const minutes =
+    Math.floor(elapsed / 60);
+
+  const seconds =
+    elapsed % 60;
+
+
+  document.getElementById(
+    "completedSteps"
+  ).textContent =
+    completedStepCount;
+
+
+  document.getElementById(
+    "completedTime"
+  ).textContent =
+    `${minutes}:${String(seconds).padStart(2, "0")}`;
+
+
+  document.getElementById(
+    "completionMessage"
+  ).textContent =
+    `You made some time for yourself with ${currentRoutine.title}.`;
+
+
+  completionOverlay.hidden = false;
+
+}
+
+
+
+/* =========================================
+   CLOSE PLAYER
+========================================= */
+
+function closePlayer() {
+
+  clearTimers();
+
+  playerOverlay.hidden = true;
+  breakOverlay.hidden = true;
+
+  document.body.classList.remove("player-open");
+
+}
+
+
+
+/* =========================================
+   RESTART
+========================================= */
+
+function restartRoutine() {
+
+  if (!currentRoutine) {
+    return;
+  }
+
+
+  completionOverlay.hidden = true;
+
+  currentStepIndex = 0;
+  completedStepCount = 0;
+
+  routineStartedAt = Date.now();
+
+  playerOverlay.hidden = false;
+
+  showCurrentStep();
+
+}
+
+
+
+/* =========================================
+   CLEAR TIMERS
+========================================= */
+
+function clearTimers() {
+
+  clearInterval(timerInterval);
+  clearInterval(breakInterval);
+
+  timerInterval = null;
+  breakInterval = null;
+
+}
+
+
+
+/* =========================================
+   RANDOM ROUTINE
+========================================= */
+
+function surpriseMe() {
+
+  const randomIndex =
+    Math.floor(
+      Math.random() * routines.length
+    );
+
+  const routine =
+    routines[randomIndex];
+
+
+  if (
+    document.getElementById("routineGrid")
+  ) {
+
+    startRoutine(routine.id);
+
+    return;
+
+  }
+
+
+  window.location.href =
+    `routines.html?routine=${routine.id}`;
+
+}
+
+
+
+/* =========================================
+   CATEGORY FILTERS
+========================================= */
+
+function setupCategoryFilters() {
+
+  const buttons =
+    document.querySelectorAll(
+      ".category-tab"
+    );
+
+
+  buttons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        buttons.forEach(
+          item =>
+            item.classList.remove("active")
+        );
+
+
+        button.classList.add("active");
+
+
+        createRoutineCards(
+          button.dataset.category
+        );
+
+      }
+    );
+
   });
 
 }
 
 
-/* =========================
-   TOAST
-========================= */
 
-let toastTimeout;
+/* =========================================
+   URL HANDLING
+========================================= */
+
+function handleURL() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
 
 
-function showToast(message) {
+  const category =
+    params.get("category");
 
-  if (!toast) {
-    return;
+  const routine =
+    params.get("routine");
+
+
+  if (category) {
+
+    const tab =
+      document.querySelector(
+        `[data-category="${category}"]`
+      );
+
+
+    if (tab) {
+      tab.click();
+    }
+
   }
 
 
-  toast.textContent =
-    message;
+  if (routine) {
 
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  clearTimeout(
-    toastTimeout
-  );
-
-
-  toastTimeout =
     setTimeout(
-      () => {
-
-        toast.classList.remove(
-          "show"
-        );
-
-      },
-      2600
+      () => startRoutine(routine),
+      100
     );
+
+  }
 
 }
 
 
-/* =========================
-   INITIAL LOAD
-========================= */
+
+/* =========================================
+   EVENT LISTENERS
+========================================= */
 
 document.addEventListener(
   "DOMContentLoaded",
   () => {
 
-    console.log(
-      "🌷 Mallow Movement loaded!"
+    createRoutineCards();
+
+    setupCategoryFilters();
+
+    handleURL();
+
+
+    const pauseButton =
+      document.getElementById(
+        "pauseButton"
+      );
+
+    if (pauseButton) {
+
+      pauseButton.addEventListener(
+        "click",
+        togglePause
+      );
+
+    }
+
+
+    const skipButton =
+      document.getElementById(
+        "skipButton"
+      );
+
+    if (skipButton) {
+
+      skipButton.addEventListener(
+        "click",
+        skipStep
+      );
+
+    }
+
+
+    const doneButton =
+      document.getElementById(
+        "playerDone"
+      );
+
+    if (doneButton) {
+
+      doneButton.addEventListener(
+        "click",
+        completeCurrentStep
+      );
+
+    }
+
+
+    const closeButton =
+      document.getElementById(
+        "playerClose"
+      );
+
+    if (closeButton) {
+
+      closeButton.addEventListener(
+        "click",
+        closePlayer
+      );
+
+    }
+
+
+    const skipBreakButton =
+      document.getElementById(
+        "skipBreak"
+      );
+
+    if (skipBreakButton) {
+
+      skipBreakButton.addEventListener(
+        "click",
+        skipBreak
+      );
+
+    }
+
+
+    const moreBreakButton =
+      document.getElementById(
+        "moreBreak"
+      );
+
+    if (moreBreakButton) {
+
+      moreBreakButton.addEventListener(
+        "click",
+        addBreakTime
+      );
+
+    }
+
+
+    const restartButton =
+      document.getElementById(
+        "restartRoutine"
+      );
+
+    if (restartButton) {
+
+      restartButton.addEventListener(
+        "click",
+        restartRoutine
+      );
+
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closePlayer();
+
+        }
+
+      }
     );
 
   }
