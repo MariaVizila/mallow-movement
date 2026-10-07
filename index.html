@@ -14,7 +14,6 @@
 
 <body>
 
-  <!-- Background -->
   <div class="background-glow glow-one"></div>
   <div class="background-glow glow-two"></div>
   <div class="background-glow glow-three"></div>
@@ -39,11 +38,11 @@
 
     <div class="nav-links">
 
-      <a href="#home" class="active">
+      <a href="index.html" class="active">
         Home
       </a>
 
-      <a href="#routines">
+      <a href="routines.html">
         Routines
       </a>
 
@@ -54,20 +53,20 @@
     </div>
 
 
-    <button
+    <a
+      href="routines.html"
       class="start-button"
-      onclick="scrollToRoutines()"
     >
       Start moving
       <span>→</span>
-    </button>
+    </a>
 
   </nav>
 
 
 
   <!-- Main -->
-  <main id="home">
+  <main>
 
 
     <!-- Hero -->
@@ -88,21 +87,21 @@
 
 
         <p>
-          Explore movement that supports your strength,
-          energy, flexibility, and wellbeing — without
-          pressure or comparisons.
+          Explore movement and self-care routines that
+          support your energy, flexibility, strength,
+          wellbeing, and everyday confidence.
         </p>
 
 
         <div class="hero-buttons">
 
-          <button
+          <a
+            href="routines.html"
             class="primary-button"
-            onclick="scrollToRoutines()"
           >
             Explore routines
             <span>→</span>
-          </button>
+          </a>
 
 
           <button
@@ -120,8 +119,8 @@
           <span>♡</span>
 
           <p>
-            You don't have to change your body to enjoy
-            movement.
+            You can pause, skip, rest, or stop whenever
+            you need to.
           </p>
 
         </div>
@@ -179,252 +178,133 @@
 
 
 
-    <!-- Routines -->
-    <section
-      class="routines-section"
-      id="routines"
-    >
+    <!-- Featured -->
+    <section class="featured-section">
 
       <div class="section-heading">
 
         <div>
 
           <span class="eyebrow">
-            EXPLORE
+            MALLOW MOVEMENT
           </span>
 
           <h2>
-            What feels right today?
+            Something for every kind of day.
           </h2>
 
         </div>
 
 
         <p>
-          Pick a routine based on how you'd like to move,
-          or let Mallow choose one for you.
+          Movement isn't the only way to take care of
+          yourself. Explore routines for your body,
+          energy, and everyday self-care.
         </p>
 
       </div>
 
 
+      <div class="feature-preview-grid">
 
-      <div class="routine-grid">
 
-
-        <!-- Getting Started -->
-        <button
-          class="routine-card green-card"
-          data-routine="beginner"
+        <a
+          href="routines.html?category=movement"
+          class="feature-preview-card green-card"
         >
 
-          <div class="routine-icon">
+          <span class="routine-icon">
             🌱
-          </div>
+          </span>
 
+          <span class="routine-label">
+            MOVEMENT
+          </span>
 
-          <div class="routine-content">
+          <h3>
+            Move & Stretch
+          </h3>
 
-            <span class="routine-label">
-              EASY START
-            </span>
-
-            <h3>
-              Getting Started
-            </h3>
-
-            <p>
-              Simple movements for easing into activity.
-            </p>
-
-          </div>
-
+          <p>
+            Gentle movement, strength, mobility, and energy.
+          </p>
 
           <span class="card-arrow">
             →
           </span>
 
-        </button>
+        </a>
 
 
 
-        <!-- Strength -->
-        <button
-          class="routine-card pink-card"
-          data-routine="strength"
+        <a
+          href="routines.html?category=selfcare"
+          class="feature-preview-card pink-card"
         >
 
-          <div class="routine-icon">
-            💪
-          </div>
+          <span class="routine-icon">
+            🫧
+          </span>
 
+          <span class="routine-label">
+            SELF-CARE
+          </span>
 
-          <div class="routine-content">
+          <h3>
+            Everyday Care
+          </h3>
 
-            <span class="routine-label">
-              STRENGTH
-            </span>
-
-            <h3>
-              Build Strength
-            </h3>
-
-            <p>
-              Practice movements that support general strength.
-            </p>
-
-          </div>
-
+          <p>
+            Shower, hair, face, teeth, and other routines.
+          </p>
 
           <span class="card-arrow">
             →
           </span>
 
-        </button>
+        </a>
 
 
 
-        <!-- Stretch -->
-        <button
-          class="routine-card purple-card"
-          data-routine="stretch"
+        <a
+          href="routines.html?category=relax"
+          class="feature-preview-card purple-card"
         >
 
-          <div class="routine-icon">
-            🧘
-          </div>
-
-
-          <div class="routine-content">
-
-            <span class="routine-label">
-              MOBILITY
-            </span>
-
-            <h3>
-              Stretch & Mobility
-            </h3>
-
-            <p>
-              Gentle movement for flexibility and mobility.
-            </p>
-
-          </div>
-
-
-          <span class="card-arrow">
-            →
-          </span>
-
-        </button>
-
-
-
-        <!-- Energy -->
-        <button
-          class="routine-card blue-card"
-          data-routine="energy"
-        >
-
-          <div class="routine-icon">
-            ⚡
-          </div>
-
-
-          <div class="routine-content">
-
-            <span class="routine-label">
-              ENERGY
-            </span>
-
-            <h3>
-              Get Moving
-            </h3>
-
-            <p>
-              A short routine for when you want some energy.
-            </p>
-
-          </div>
-
-
-          <span class="card-arrow">
-            →
-          </span>
-
-        </button>
-
-
-
-        <!-- Wind Down -->
-        <button
-          class="routine-card lavender-card"
-          data-routine="relax"
-        >
-
-          <div class="routine-icon">
+          <span class="routine-icon">
             🌙
-          </div>
+          </span>
 
+          <span class="routine-label">
+            WIND DOWN
+          </span>
 
-          <div class="routine-content">
+          <h3>
+            Slow Down
+          </h3>
 
-            <span class="routine-label">
-              WIND DOWN
-            </span>
-
-            <h3>
-              Slow Down
-            </h3>
-
-            <p>
-              Calm, gentle movement for winding down.
-            </p>
-
-          </div>
-
+          <p>
+            Calm routines for quieter moments.
+          </p>
 
           <span class="card-arrow">
             →
           </span>
 
-        </button>
+        </a>
+
+      </div>
 
 
+      <div class="view-all-wrapper">
 
-        <!-- Surprise -->
-        <button
-          class="routine-card surprise-card"
-          id="surpriseCard"
+        <a
+          href="routines.html"
+          class="secondary-button"
         >
-
-          <div class="routine-icon">
-            🎲
-          </div>
-
-
-          <div class="routine-content">
-
-            <span class="routine-label">
-              RANDOM
-            </span>
-
-            <h3>
-              Surprise Me
-            </h3>
-
-            <p>
-              Let Mallow pick something for you.
-            </p>
-
-          </div>
-
-
-          <span class="card-arrow">
-            ✨
-          </span>
-
-        </button>
+          View all routines
+          <span>→</span>
+        </a>
 
       </div>
 
@@ -452,13 +332,14 @@
           </span>
 
           <h2>
-            Movement isn't a punishment.
+            Taking care of yourself can look different every day.
           </h2>
 
           <p>
-            Mallow Movement is about finding activities
-            you genuinely enjoy. There's no perfect routine,
-            no competition, and no required way to look.
+            Mallow Movement isn't about perfection or
+            changing how you look. It's about finding
+            activities and routines that feel useful,
+            enjoyable, and right for you.
           </p>
 
         </div>
@@ -468,94 +349,6 @@
     </section>
 
   </main>
-
-
-
-  <!-- Routine Modal -->
-  <div
-    class="routine-modal"
-    id="routineModal"
-    hidden
-  >
-
-    <div class="modal-backdrop"></div>
-
-
-    <div class="modal-card">
-
-      <button
-        class="modal-close"
-        id="closeModal"
-        aria-label="Close routine"
-      >
-        ×
-      </button>
-
-
-      <div class="modal-header">
-
-        <span
-          class="modal-icon"
-          id="modalIcon"
-        >
-          🌱
-        </span>
-
-
-        <div>
-
-          <span
-            class="eyebrow"
-            id="modalLabel"
-          >
-            ROUTINE
-          </span>
-
-          <h2 id="modalTitle">
-            Your Routine
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <p
-        class="modal-description"
-        id="modalDescription"
-      >
-        Your selected routine will appear here.
-      </p>
-
-
-      <div
-        class="routine-list"
-        id="routineList"
-      ></div>
-
-
-      <div class="modal-reminder">
-
-        <span>♡</span>
-
-        <p>
-          Listen to yourself. You can pause, rest, skip,
-          or stop whenever you want.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- Toast -->
-  <div
-    class="toast"
-    id="toast"
-  ></div>
 
 
 
