@@ -4,6 +4,10 @@
 ========================================= */
 
 
+/* =========================================
+   ROUTINES
+========================================= */
+
 const routines = [
 
   /* =========================================
@@ -20,7 +24,6 @@ const routines = [
     workout: true,
 
     steps: [
-
       {
         title: "Easy March",
         description: "March gently in place.",
@@ -61,7 +64,6 @@ const routines = [
         type: "timer",
         seconds: 60
       }
-
     ]
   },
 
@@ -80,7 +82,6 @@ const routines = [
     workout: true,
 
     steps: [
-
       {
         title: "Chair Squats",
         description: "Use a chair for support if you want.",
@@ -125,7 +126,6 @@ const routines = [
         sets: 2,
         reps: 10
       }
-
     ]
   },
 
@@ -144,7 +144,6 @@ const routines = [
     workout: true,
 
     steps: [
-
       {
         title: "Neck Turns",
         description: "Slowly look from one side to the other.",
@@ -184,7 +183,6 @@ const routines = [
         type: "timer",
         seconds: 30
       }
-
     ]
   },
 
@@ -203,7 +201,6 @@ const routines = [
     workout: true,
 
     steps: [
-
       {
         title: "March in Place",
         description: "Find a comfortable rhythm.",
@@ -244,7 +241,6 @@ const routines = [
         type: "timer",
         seconds: 60
       }
-
     ]
   },
 
@@ -263,7 +259,6 @@ const routines = [
     workout: true,
 
     steps: [
-
       {
         title: "Slow Breathing",
         description: "Take slow, comfortable breaths.",
@@ -303,14 +298,13 @@ const routines = [
         type: "timer",
         seconds: 60
       }
-
     ]
   },
 
 
   /* =========================================
      SHOWER
-     ========================================= */
+  ========================================= */
 
   {
     id: "refreshing-shower",
@@ -322,7 +316,6 @@ const routines = [
     workout: false,
 
     steps: [
-
       {
         title: "Get Ready",
         description: "Gather anything you want before starting.",
@@ -357,7 +350,6 @@ const routines = [
         icon: "🧺",
         type: "done"
       }
-
     ]
   },
 
@@ -376,7 +368,6 @@ const routines = [
     workout: false,
 
     steps: [
-
       {
         title: "Get Ready",
         description: "Grab your brush or comb and anything else you use.",
@@ -404,7 +395,6 @@ const routines = [
         icon: "🪞",
         type: "done"
       }
-
     ]
   },
 
@@ -423,7 +413,6 @@ const routines = [
     workout: false,
 
     steps: [
-
       {
         title: "Cleanse",
         description: "Use your usual cleanser and rinse comfortably.",
@@ -451,13 +440,12 @@ const routines = [
         icon: "🧴",
         type: "done"
       }
-
     ]
   },
 
 
   /* =========================================
-     PERSONAL CARE
+     MORNING CARE
   ========================================= */
 
   {
@@ -470,7 +458,6 @@ const routines = [
     workout: false,
 
     steps: [
-
       {
         title: "Brush Your Teeth",
         description: "Brush your teeth.",
@@ -498,13 +485,12 @@ const routines = [
         icon: "👕",
         type: "done"
       }
-
     ]
   },
 
 
   /* =========================================
-     NIGHT ROUTINE
+     NIGHT CARE
   ========================================= */
 
   {
@@ -517,7 +503,6 @@ const routines = [
     workout: false,
 
     steps: [
-
       {
         title: "Brush Your Teeth",
         description: "Brush your teeth.",
@@ -545,12 +530,10 @@ const routines = [
         icon: "🌙",
         type: "done"
       }
-
     ]
   }
 
 ];
-
 
 
 /* =========================================
@@ -572,7 +555,6 @@ let routineStartedAt = null;
 let completedStepCount = 0;
 
 
-
 /* =========================================
    DOM
 ========================================= */
@@ -588,7 +570,6 @@ const breakOverlay =
 
 const completionOverlay =
   document.getElementById("completionOverlay");
-
 
 
 /* =========================================
@@ -669,7 +650,6 @@ function createRoutineCards(filter = "all") {
 }
 
 
-
 /* =========================================
    START ROUTINE
 ========================================= */
@@ -685,6 +665,7 @@ function startRoutine(routineId) {
     return;
   }
 
+  clearTimers();
 
   currentRoutine = routine;
   currentStepIndex = 0;
@@ -692,19 +673,19 @@ function startRoutine(routineId) {
 
   routineStartedAt = Date.now();
 
+  isPaused = false;
+
 
   if (completionOverlay) {
-    completionOverlay.hidden = true;
+    completionOverlay.style.display = "none";
   }
-
 
   if (breakOverlay) {
-    breakOverlay.hidden = true;
+    breakOverlay.style.display = "none";
   }
 
-
   if (playerOverlay) {
-    playerOverlay.hidden = false;
+    playerOverlay.style.display = "flex";
   }
 
 
@@ -713,7 +694,6 @@ function startRoutine(routineId) {
   showCurrentStep();
 
 }
-
 
 
 /* =========================================
@@ -746,36 +726,85 @@ function showCurrentStep() {
     currentRoutine.steps.length;
 
 
-  document.getElementById("playerCategory").textContent =
-    currentRoutine.categoryName;
+  const category =
+    document.getElementById("playerCategory");
 
-  document.getElementById("playerTitle").textContent =
-    currentRoutine.title;
+  const title =
+    document.getElementById("playerTitle");
 
-  document.getElementById("playerIcon").textContent =
-    step.icon;
+  const icon =
+    document.getElementById("playerIcon");
 
-  document.getElementById("playerStepTitle").textContent =
-    step.title;
+  const stepTitle =
+    document.getElementById("playerStepTitle");
 
-  document.getElementById("playerDescription").textContent =
-    step.description;
+  const description =
+    document.getElementById("playerDescription");
 
-  document.getElementById("currentStep").textContent =
-    currentStepIndex + 1;
+  const currentStep =
+    document.getElementById("currentStep");
 
-  document.getElementById("totalSteps").textContent =
-    total;
+  const totalSteps =
+    document.getElementById("totalSteps");
 
+
+  if (category) {
+    category.textContent =
+      currentRoutine.categoryName;
+  }
+
+  if (title) {
+    title.textContent =
+      currentRoutine.title;
+  }
+
+  if (icon) {
+    icon.textContent =
+      step.icon;
+  }
+
+  if (stepTitle) {
+    stepTitle.textContent =
+      step.title;
+  }
+
+  if (description) {
+    description.textContent =
+      step.description;
+  }
+
+  if (currentStep) {
+    currentStep.textContent =
+      currentStepIndex + 1;
+  }
+
+  if (totalSteps) {
+    totalSteps.textContent =
+      total;
+  }
+
+
+  /* =====================================
+     PROGRESS
+  ===================================== */
 
   const progress =
     ((currentStepIndex) / total) * 100;
 
-  document.getElementById(
-    "playerProgressBar"
-  ).style.width =
-    `${progress}%`;
+  const progressBar =
+    document.getElementById(
+      "playerProgressBar"
+    );
 
+  if (progressBar) {
+    progressBar.style.width =
+      `${progress}%`;
+  }
+
+
+  /* =====================================
+     PLAYER CONTROLS
+  ===================================== */
 
   const timerArea =
     document.getElementById("timerArea");
@@ -791,76 +820,111 @@ function showCurrentStep() {
 
 
   /*
-    Always hide every special control first.
-    This prevents controls from carrying over
-    from the previous step.
+    ALWAYS HIDE EVERYTHING FIRST.
+
+    We use inline styles instead of the
+    hidden attribute so the page CSS
+    cannot accidentally force them visible.
   */
 
-  timerArea.hidden = true;
-  repsArea.hidden = true;
-  doneButton.hidden = true;
-  timerControls.hidden = true;
+  if (timerArea) {
+    timerArea.style.display = "none";
+  }
+
+  if (repsArea) {
+    repsArea.style.display = "none";
+  }
+
+  if (doneButton) {
+    doneButton.style.display = "none";
+  }
+
+  if (timerControls) {
+    timerControls.style.display = "none";
+  }
 
 
-  /*
-    MOVEMENT TIMER
-  */
+  /* =====================================
+     WORKOUT TIMER
+  ===================================== */
 
   if (
-    currentRoutine.workout &&
+    currentRoutine.workout === true &&
     step.type === "timer"
   ) {
 
-    timerArea.hidden = false;
-    timerControls.hidden = false;
+    if (timerArea) {
+      timerArea.style.display = "flex";
+    }
+
+    if (timerControls) {
+      timerControls.style.display = "flex";
+    }
+
 
     remainingSeconds =
-      step.seconds;
+      Number(step.seconds) || 0;
 
     updateTimerDisplay();
 
     startTimer();
 
+    return;
   }
 
 
-  /*
-    MOVEMENT REPS
-  */
+  /* =====================================
+     WORKOUT REPS
+  ===================================== */
 
-  else if (
-    currentRoutine.workout &&
+  if (
+    currentRoutine.workout === true &&
     step.type === "reps"
   ) {
 
-    repsArea.hidden = false;
-    doneButton.hidden = false;
+    if (repsArea) {
+      repsArea.style.display = "flex";
+    }
 
-    document.getElementById(
-      "setsDisplay"
-    ).textContent =
-      step.sets;
+    if (doneButton) {
+      doneButton.style.display = "flex";
+    }
 
-    document.getElementById(
-      "repsDisplay"
-    ).textContent =
-      step.reps;
 
+    const setsDisplay =
+      document.getElementById(
+        "setsDisplay"
+      );
+
+    const repsDisplay =
+      document.getElementById(
+        "repsDisplay"
+      );
+
+
+    if (setsDisplay) {
+      setsDisplay.textContent =
+        step.sets || 1;
+    }
+
+    if (repsDisplay) {
+      repsDisplay.textContent =
+        step.reps || 1;
+    }
+
+    return;
   }
 
 
-  /*
-    SELF-CARE / DONE STEP
-  */
+  /* =====================================
+     SELF-CARE / DONE
+  ===================================== */
 
-  else {
-
-    doneButton.hidden = false;
-
+  if (doneButton) {
+    doneButton.style.display = "flex";
   }
 
 }
-
 
 
 /* =========================================
@@ -882,13 +946,14 @@ function startTimer() {
 
       remainingSeconds--;
 
-
       updateTimerDisplay();
 
 
       if (remainingSeconds <= 0) {
 
         clearInterval(timerInterval);
+
+        timerInterval = null;
 
         finishStep();
 
@@ -899,7 +964,6 @@ function startTimer() {
 }
 
 
-
 /* =========================================
    TIMER DISPLAY
 ========================================= */
@@ -907,7 +971,9 @@ function startTimer() {
 function updateTimerDisplay() {
 
   const display =
-    document.getElementById("timerDisplay");
+    document.getElementById(
+      "timerDisplay"
+    );
 
 
   if (!display) {
@@ -930,7 +996,6 @@ function updateTimerDisplay() {
 }
 
 
-
 /* =========================================
    PAUSE
 ========================================= */
@@ -939,7 +1004,7 @@ function togglePause() {
 
   if (
     !currentRoutine ||
-    !currentRoutine.workout
+    currentRoutine.workout !== true
   ) {
     return;
   }
@@ -950,7 +1015,9 @@ function togglePause() {
 
 
   const button =
-    document.getElementById("pauseButton");
+    document.getElementById(
+      "pauseButton"
+    );
 
 
   if (button) {
@@ -965,16 +1032,15 @@ function togglePause() {
 }
 
 
-
 /* =========================================
-   SKIP
+   SKIP STEP
 ========================================= */
 
 function skipStep() {
 
   if (
     !currentRoutine ||
-    !currentRoutine.workout
+    currentRoutine.workout !== true
   ) {
     return;
   }
@@ -985,9 +1051,8 @@ function skipStep() {
 }
 
 
-
 /* =========================================
-   DONE
+   COMPLETE CURRENT STEP
 ========================================= */
 
 function completeCurrentStep() {
@@ -995,7 +1060,6 @@ function completeCurrentStep() {
   finishStep();
 
 }
-
 
 
 /* =========================================
@@ -1010,14 +1074,13 @@ function finishStep() {
 
 
   /*
-    Only workout routines get rest breaks.
-    Self-care routines immediately move
-    to the next checklist item.
+    Workout routines receive breaks.
+    Self-care routines do NOT.
   */
 
   if (
     currentRoutine &&
-    currentRoutine.workout
+    currentRoutine.workout === true
   ) {
 
     startBreak();
@@ -1030,7 +1093,6 @@ function finishStep() {
   nextStep();
 
 }
-
 
 
 /* =========================================
@@ -1050,7 +1112,7 @@ function startBreak() {
   }
 
 
-  breakOverlay.hidden = false;
+  breakOverlay.style.display = "flex";
 
 
   breakInterval =
@@ -1065,7 +1127,10 @@ function startBreak() {
 
         clearInterval(breakInterval);
 
-        breakOverlay.hidden = true;
+        breakInterval = null;
+
+        breakOverlay.style.display =
+          "none";
 
         nextStep();
 
@@ -1076,7 +1141,6 @@ function startBreak() {
 }
 
 
-
 /* =========================================
    BREAK DISPLAY
 ========================================= */
@@ -1084,7 +1148,9 @@ function startBreak() {
 function updateBreakDisplay() {
 
   const display =
-    document.getElementById("breakTimer");
+    document.getElementById(
+      "breakTimer"
+    );
 
 
   if (!display) {
@@ -1107,7 +1173,6 @@ function updateBreakDisplay() {
 }
 
 
-
 /* =========================================
    SKIP BREAK
 ========================================= */
@@ -1116,12 +1181,18 @@ function skipBreak() {
 
   clearInterval(breakInterval);
 
-  breakOverlay.hidden = true;
+  breakInterval = null;
+
+
+  if (breakOverlay) {
+    breakOverlay.style.display =
+      "none";
+  }
+
 
   nextStep();
 
 }
-
 
 
 /* =========================================
@@ -1135,7 +1206,6 @@ function addBreakTime() {
   updateBreakDisplay();
 
 }
-
 
 
 /* =========================================
@@ -1152,20 +1222,18 @@ function nextStep() {
   if (
     !currentRoutine ||
     currentStepIndex >=
-    currentRoutine.steps.length
+      currentRoutine.steps.length
   ) {
 
     completeRoutine();
 
     return;
-
   }
 
 
   showCurrentStep();
 
 }
-
 
 
 /* =========================================
@@ -1183,7 +1251,14 @@ function completeRoutine() {
 
 
   if (playerOverlay) {
-    playerOverlay.hidden = true;
+    playerOverlay.style.display =
+      "none";
+  }
+
+
+  if (breakOverlay) {
+    breakOverlay.style.display =
+      "none";
   }
 
 
@@ -1191,7 +1266,8 @@ function completeRoutine() {
     Math.max(
       0,
       Math.floor(
-        (Date.now() - routineStartedAt) / 1000
+        (Date.now() - routineStartedAt) /
+        1000
       )
     );
 
@@ -1209,10 +1285,8 @@ function completeRoutine() {
     );
 
   if (completedSteps) {
-
     completedSteps.textContent =
       completedStepCount;
-
   }
 
 
@@ -1222,10 +1296,8 @@ function completeRoutine() {
     );
 
   if (completedTime) {
-
     completedTime.textContent =
       `${minutes}:${String(seconds).padStart(2, "0")}`;
-
   }
 
 
@@ -1243,14 +1315,16 @@ function completeRoutine() {
 
 
   if (completionOverlay) {
-    completionOverlay.hidden = false;
+    completionOverlay.style.display =
+      "flex";
   }
 
 
-  document.body.classList.remove("player-open");
+  document.body.classList.remove(
+    "player-open"
+  );
 
 }
-
 
 
 /* =========================================
@@ -1263,28 +1337,30 @@ function closePlayer() {
 
 
   if (playerOverlay) {
-    playerOverlay.hidden = true;
+    playerOverlay.style.display =
+      "none";
   }
-
 
   if (breakOverlay) {
-    breakOverlay.hidden = true;
+    breakOverlay.style.display =
+      "none";
   }
-
 
   if (completionOverlay) {
-    completionOverlay.hidden = true;
+    completionOverlay.style.display =
+      "none";
   }
 
 
-  document.body.classList.remove("player-open");
+  document.body.classList.remove(
+    "player-open"
+  );
 
 }
 
 
-
 /* =========================================
-   RESTART
+   RESTART ROUTINE
 ========================================= */
 
 function restartRoutine() {
@@ -1296,28 +1372,38 @@ function restartRoutine() {
 
   clearTimers();
 
-
-  if (completionOverlay) {
-    completionOverlay.hidden = true;
-  }
-
-
   currentStepIndex = 0;
   completedStepCount = 0;
 
   routineStartedAt = Date.now();
 
+  isPaused = false;
+
+
+  if (completionOverlay) {
+    completionOverlay.style.display =
+      "none";
+  }
+
+  if (breakOverlay) {
+    breakOverlay.style.display =
+      "none";
+  }
+
   if (playerOverlay) {
-    playerOverlay.hidden = false;
+    playerOverlay.style.display =
+      "flex";
   }
 
 
-  document.body.classList.add("player-open");
+  document.body.classList.add(
+    "player-open"
+  );
+
 
   showCurrentStep();
 
 }
-
 
 
 /* =========================================
@@ -1326,14 +1412,19 @@ function restartRoutine() {
 
 function clearTimers() {
 
-  clearInterval(timerInterval);
-  clearInterval(breakInterval);
+  if (timerInterval) {
+    clearInterval(timerInterval);
+  }
+
+  if (breakInterval) {
+    clearInterval(breakInterval);
+  }
+
 
   timerInterval = null;
   breakInterval = null;
 
 }
-
 
 
 /* =========================================
@@ -1347,12 +1438,15 @@ function surpriseMe() {
       Math.random() * routines.length
     );
 
+
   const routine =
     routines[randomIndex];
 
 
   if (
-    document.getElementById("routineGrid")
+    document.getElementById(
+      "routineGrid"
+    )
   ) {
 
     startRoutine(routine.id);
@@ -1366,7 +1460,6 @@ function surpriseMe() {
     `routines.html?routine=${routine.id}`;
 
 }
-
 
 
 /* =========================================
@@ -1387,13 +1480,18 @@ function setupCategoryFilters() {
       "click",
       () => {
 
-        buttons.forEach(
-          item =>
-            item.classList.remove("active")
+        buttons.forEach(item => {
+
+          item.classList.remove(
+            "active"
+          );
+
+        });
+
+
+        button.classList.add(
+          "active"
         );
-
-
-        button.classList.add("active");
 
 
         createRoutineCards(
@@ -1406,7 +1504,6 @@ function setupCategoryFilters() {
   });
 
 }
-
 
 
 /* =========================================
@@ -1453,7 +1550,6 @@ function handleURL() {
   }
 
 }
-
 
 
 /* =========================================
@@ -1612,12 +1708,8 @@ document.addEventListener(
       "keydown",
       event => {
 
-        if (
-          event.key === "Escape"
-        ) {
-
+        if (event.key === "Escape") {
           closePlayer();
-
         }
 
       }
