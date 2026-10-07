@@ -3,6 +3,14 @@
    ROUTINE SYSTEM
 ========================================= */
 
+/* =========================================
+   FORCE HIDDEN ELEMENTS TO STAY HIDDEN
+========================================= */
+
+[hidden] {
+  display: none !important;
+}
+
 
 const routines = [
 
