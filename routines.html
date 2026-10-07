@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Mallow Movement — Routines</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background-glow glow-one"></div>
+  <div class="background-glow glow-two"></div>
+  <div class="background-glow glow-three"></div>
+
+
+  <!-- Navigation -->
+  <nav class="navbar">
+
+    <a href="index.html" class="brand">
+
+      <div class="brand-flower">
+        ✿
+      </div>
+
+      <div>
+        <strong>mallow</strong>
+        <span>movement</span>
+      </div>
+
+    </a>
+
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="routines.html" class="active">
+        Routines
+      </a>
+
+      <a href="index.html#about">
+        About
+      </a>
+
+    </div>
+
+
+    <a
+      href="index.html"
+      class="start-button"
+    >
+      ← Home
+    </a>
+
+  </nav>
+
+
+
+  <!-- Routines Page -->
+  <main class="routines-page">
+
+
+    <section class="routines-hero">
+
+      <div class="welcome-pill">
+        <span>🌷</span>
+        Your Mallow routines
+      </div>
+
+
+      <h1>
+        What are you feeling
+        <span>today?</span>
+      </h1>
+
+
+      <p>
+        Choose something that sounds good to you.
+        Some routines are timed, some use simple
+        Done buttons, and workout routines include
+        optional rest breaks.
+      </p>
+
+    </section>
+
+
+
+    <!-- Category Filters -->
+    <section class="category-section">
+
+      <div class="category-tabs">
+
+        <button
+          class="category-tab active"
+          data-category="all"
+        >
+          ✨ All
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="movement"
+        >
+          🌱 Movement
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="selfcare"
+        >
+          🫧 Self-Care
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="hair"
+        >
+          🪮 Hair
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="face"
+        >
+          ✨ Face
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="shower"
+        >
+          🚿 Shower
+        </button>
+
+        <button
+          class="category-tab"
+          data-category="relax"
+        >
+          🌙 Wind Down
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- Routine Cards -->
+    <section class="routine-library">
+
+      <div
+        class="routine-library-grid"
+        id="routineGrid"
+      ></div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- Routine Player -->
+  <div
+    class="player-overlay"
+    id="playerOverlay"
+    hidden
+  >
+
+    <div class="player-card">
+
+
+      <!-- Player Top -->
+      <div class="player-top">
+
+        <button
+          class="player-close"
+          id="playerClose"
+          aria-label="Close routine"
+        >
+          ×
+        </button>
+
+
+        <div class="player-title-area">
+
+          <span
+            class="player-category"
+            id="playerCategory"
+          >
+            ROUTINE
+          </span>
+
+          <h2 id="playerTitle">
+            Routine
+          </h2>
+
+        </div>
+
+
+        <div class="player-step-count">
+
+          <span id="currentStep">
+            1
+          </span>
+
+          /
+
+          <span id="totalSteps">
+            1
+          </span>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- Progress -->
+      <div class="player-progress">
+
+        <div
+          class="player-progress-bar"
+          id="playerProgressBar"
+        ></div>
+
+      </div>
+
+
+
+      <!-- Player Content -->
+      <div class="player-content">
+
+
+        <div
+          class="player-icon"
+          id="playerIcon"
+        >
+          🌱
+        </div>
+
+
+        <span
+          class="player-label"
+          id="playerLabel"
+        >
+          STEP
+        </span>
+
+
+        <h3 id="playerStepTitle">
+          Get Ready
+        </h3>
+
+
+        <p
+          class="player-description"
+          id="playerDescription"
+        >
+          Your routine is about to begin.
+        </p>
+
+
+
+        <!-- Timer -->
+        <div
+          class="timer-area"
+          id="timerArea"
+        >
+
+          <div
+            class="timer-circle"
+            id="timerCircle"
+          >
+
+            <span id="timerDisplay">
+              0:30
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Sets / Reps -->
+        <div
+          class="reps-area"
+          id="repsArea"
+          hidden
+        >
+
+          <div class="rep-box">
+
+            <span>
+              SETS
+            </span>
+
+            <strong id="setsDisplay">
+              1
+            </strong>
+
+          </div>
+
+
+          <div class="rep-box">
+
+            <span>
+              REPS
+            </span>
+
+            <strong id="repsDisplay">
+              10
+            </strong>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Done -->
+        <button
+          class="player-done-button"
+          id="playerDone"
+          hidden
+        >
+          Done
+          <span>✓</span>
+        </button>
+
+
+
+        <!-- Timer Controls -->
+        <div
+          class="timer-controls"
+          id="timerControls"
+        >
+
+          <button
+            class="pause-button"
+            id="pauseButton"
+          >
+            Pause
+          </button>
+
+          <button
+            class="skip-button"
+            id="skipButton"
+          >
+            Skip →
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Break Overlay -->
+  <div
+    class="break-overlay"
+    id="breakOverlay"
+    hidden
+  >
+
+    <div class="break-card">
+
+      <div class="break-icon">
+        🌸
+      </div>
+
+
+      <span class="eyebrow">
+        NICE WORK
+      </span>
+
+
+      <h2>
+        Take a break.
+      </h2>
+
+
+      <p>
+        Rest for a moment before the next part.
+      </p>
+
+
+      <div class="break-timer">
+        <span id="breakTimer">
+          0:30
+        </span>
+      </div>
+
+
+      <div class="break-buttons">
+
+        <button
+          class="primary-button"
+          id="skipBreak"
+        >
+          Skip break
+          <span>→</span>
+        </button>
+
+
+        <button
+          class="secondary-button"
+          id="moreBreak"
+        >
+          + 15 seconds
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Completion -->
+  <div
+    class="completion-overlay"
+    id="completionOverlay"
+    hidden
+  >
+
+    <div class="completion-card">
+
+      <div class="completion-flower">
+        🌷
+      </div>
+
+
+      <span class="eyebrow">
+        ROUTINE COMPLETE
+      </span>
+
+
+      <h2>
+        You did it! ✨
+      </h2>
+
+
+      <p id="completionMessage">
+        You made some time for yourself today.
+      </p>
+
+
+      <div class="completion-stats">
+
+        <div>
+
+          <strong id="completedSteps">
+            0
+          </strong>
+
+          <span>
+            steps
+          </span>
+
+        </div>
+
+
+        <div>
+
+          <strong id="completedTime">
+            0:00
+          </strong>
+
+          <span>
+            active time
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="completion-buttons">
+
+        <button
+          class="primary-button"
+          id="restartRoutine"
+        >
+          Do it again
+          <span>↻</span>
+        </button>
+
+
+        <a
+          href="routines.html"
+          class="secondary-button"
+        >
+          Back to routines
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Toast -->
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+
+  <footer>
+
+    <div class="footer-brand">
+      ✿ mallow movement
+    </div>
+
+    <p>
+      Move your way. Feel your way.
+    </p>
+
+    <span>
+      Made with ♡
+    </span>
+
+  </footer>
+
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
